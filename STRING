@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+int isPalindrome(char *str) {
+    int len = strlen(str);
+    for (int i = 0; i < len / 2; i++) {
+        if (str[i] != str[len - i - 1]) {
+            return 0; // Not a palindrome
+        }
+    }
+    return 1; // Palindrome
+}
+
+char* findFirstPalindromicString(char **words, int size) {
+    for (int i = 0; i < size; i++) {
+        if (isPalindrome(words[i])) {
+            return words[i];
+        }
+    }
+    return ""; // No palindromic string found
+}
+
+int main() {
+    char *words[] = {"hello", "level", "world"};
+    int size = sizeof(words) / sizeof(words[0]);
+    
+    char *result = findFirstPalindromicString(words, size);
+    
+    if (strlen(result) > 0) {
+        printf("First palindromic string: %s\n", result);
+    } else {
+        printf("No palindromic string found.\n");
+    }
+    
+    return 0;
+}
+
+Input: words = ["abc","car","ada","racecar","cool"]
+Output: "ada"
+
